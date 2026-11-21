@@ -4,7 +4,7 @@ tareas = []
 
 
 def mostrar_menu():
-    print("\n=== GESTOR DE TAREAS ===")
+    print("\n=== GESTOR DE TAREAS - VERSION PRINCIPAL ===")
     print("1. Agregar tarea")
     print("2. Listar tareas")
     print("3. Salir")
