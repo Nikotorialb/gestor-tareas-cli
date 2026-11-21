@@ -4,10 +4,12 @@ tareas = []
 
 
 def mostrar_menu():
-    print("\n=== GESTOR DE TAREAS - VERSION PRINCIPAL ===")
+    print("\n=== GESTOR DE TAREAS ===")
     print("1. Agregar tarea")
     print("2. Listar tareas")
-    print("3. Salir")
+    print("3. Completar tarea")
+    print("4. Eliminar tarea")
+    print("5. Salir")
 
 
 def agregar_tarea():
@@ -28,6 +30,46 @@ def listar_tareas():
         print(f"{i}. {tarea['titulo']} - {estado}")
 
 
+def completar_tarea():
+    if not tareas:
+        print("No hay tareas registradas.")
+        return
+
+    listar_tareas()
+
+    try:
+        numero = int(input("Ingrese el número de tarea a completar: "))
+
+        if 1 <= numero <= len(tareas):
+            tareas[numero - 1]["completada"] = True
+            print("Tarea completada correctamente.")
+        else:
+            print("Número de tarea no válido.")
+
+    except ValueError:
+        print("Debe ingresar un número válido.")
+
+
+def eliminar_tarea():
+    if not tareas:
+        print("No hay tareas registradas.")
+        return
+
+    listar_tareas()
+
+    try:
+        numero = int(input("Ingrese el número de tarea a eliminar: "))
+
+        if 1 <= numero <= len(tareas):
+            eliminada = tareas.pop(numero - 1)
+            print(f"Tarea '{eliminada['titulo']}' eliminada.")
+        else:
+            print("Número de tarea no válido.")
+
+    except ValueError:
+        print("Debe ingresar un número válido.")
+
+
 def main():
     while True:
         mostrar_menu()
@@ -38,6 +80,10 @@ def main():
         elif opcion == "2":
             listar_tareas()
         elif opcion == "3":
+            completar_tarea()
+        elif opcion == "4":
+            eliminar_tarea()
+        elif opcion == "5":
             print("Saliendo del programa...")
             break
         else:
